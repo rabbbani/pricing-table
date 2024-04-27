@@ -1,0 +1,169 @@
+*,
+::before,
+::after{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root{
+    --dark: #15171a;
+    --light-cyan:#70d6ff;
+    --light-pink:#ff70a6;
+    --light-orange:#ff9770;
+
+    --dark-cyan:#284b58;
+    --dark-pink:#532839;
+    --dark-orange:#553327;
+    
+}
+
+body{
+    font-family: "Rubik", sans-serif;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--dark);
+    position: relative;
+}
+
+.blur{
+    position: absolute;
+    width: 240px;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    filter: blur(50px);
+    z-index: -1;
+    opacity: .2;
+}
+
+.one{
+    background-color: var(--light-pink);
+    right: 10%;
+    top: 20%;
+}
+.two{
+    background-color: var(--light-cyan);
+    left: 5%;
+    bottom: 50%;
+}
+.three{
+    background-color: var(--light-orange);
+    left: 30%;
+    bottom: 2%;
+}
+
+main{
+    display: grid;
+    grid-template-columns: auto auto auto;
+    border-radius: 20px;
+    /* overflow: hidden; */
+    
+    margin-inline: 1rem;
+    max-width: 1000px;
+}
+
+.card{
+    backdrop-filter: blur(10px);
+    background-color: rgba(255, 255, 255, 0.055);
+    color: white;
+    padding: 4rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border-radius: 1rem; 
+    transition: transform 300ms ease-in-out;
+}
+
+.card:hover{
+    transform: translateY(-5px);
+}
+
+.card.left{
+    animation: entry 600ms ease;
+    border-block: 2px solid var(--light-pink);
+}
+.card.middle{
+    animation: entry 300ms ease;
+    transform: scale(1.1);
+    z-index: 2;
+    border-block: 2px solid var(--light-cyan);
+} 
+.card.right{
+    animation: entry 900ms ease;
+    border-block: 2px solid var(--light-orange);
+}
+
+@keyframes entry{
+    from{   
+        transform: translateY(-100%);
+    }
+}
+.card h2{
+    margin-bottom: 1.5rem;
+    font-size: 1.3rem;
+}
+
+.card .price{
+    font-size: 3.5rem;
+    font-weight: 700;
+}
+
+.card .price span{
+    font-size: 1.6rem;
+}
+
+.price-text{
+    font-size: 14px;
+    font-weight: 300;
+    margin-bottom: 2rem;
+    opacity: .6;
+}
+
+.card .text{
+    opacity: .8;
+    font-size: 16px;
+    line-height: 1.5;
+    margin-bottom: 2rem;
+}
+.button{
+    background-color: darkblue;
+    width: fit-content;
+    padding: 14px 15px;
+    color: white;
+    font-weight: 600;
+    text-decoration: none;
+    border-radius: 7px;
+    transition: transform 300ms ease-in-out;
+}
+
+.button:hover{
+    transform: translateY(-2px);
+}
+
+.left .button{
+    background-color: var(--dark-pink);
+    color: var(--light-pink);
+}
+.middle .button{
+    background-color: var(--dark-cyan);
+    color: var(--light-cyan);
+}
+.right .button{
+    background-color: var(--dark-orange);
+    color: var(--light-orange);
+}
+
+
+@media screen and (max-width:816px ){
+    main{
+        grid-template-columns: 1fr;
+        margin-block: 1rem;
+        gap: 10px;
+    }
+    .card.middle{
+        transform: scale(1);
+    }
+
+}
